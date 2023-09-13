@@ -4,6 +4,9 @@ import { ReactComponent as DropDownIcon } from "./../assets/icons/Expand_Arrow.s
 import { ReactComponent as TwoTicketsIcon } from "./../assets/icons/Two_Tickets.svg";
 import { ReactComponent as ListIcon } from "./../assets/icons/List.svg";
 import { ReactComponent as ListWhiteIcon } from "./../assets/icons/List_white.svg";
+import { ReactComponent as StarIcon } from "./../assets/icons/Star.svg";
+import HeartFIcon from "./../assets/icons/heart-filled-y.png";
+import HeartLIcon from "./../assets/icons/heart-lined-y.png";
 
 import style from "./Movie.module.css";
 import { useParams } from "react-router-dom";
@@ -36,7 +39,7 @@ interface pageDataI {
   movie: Movie_CompleteI | null,
   top_rated: DataI | null
 }
-function Movie() {
+function Movie(props: {favorites: [value: number[],setValue : React.Dispatch<React.SetStateAction<number[]>>]}) {
   const [pageData, setPageData] = useState<pageDataI>({
     movie: null,
     top_rated: null
@@ -211,7 +214,42 @@ function Movie() {
             </aside>
             <aside>
               <div>
-                <div></div>
+                <div>
+                  <div>
+                    <span
+                    onClick={() => {
+                      if (pageData.movie){
+                        let id = pageData.movie.id
+                        if (props.favorites[0].includes(id)) {
+                          props.favorites[1](prev => {
+                            return prev.filter(el => el !== id)
+                          })
+                          triggerPopup("Removed from favourites")
+                        }
+                        else {
+                          props.favorites[1](prev => {
+                            return prev.concat([id])
+                          })
+                          triggerPopup("Added to favourites")
+                        }
+                      }
+                    }}
+                    >
+                      {
+                        props.favorites[0].includes(pageData.movie.id) ?
+                        <img src={HeartFIcon} alt="" /> :
+                        <img src={HeartLIcon} alt="" />
+                        
+                      }
+                    </span>
+                  </div>
+                  <div>
+                    <span><StarIcon /></span>
+                    <span>{pageData.movie.vote_average}</span>
+                    <span>|</span>
+                    <span>{pageData.movie.vote_count}</span>
+                  </div>
+                </div>
                 <div>
                   <div className="button">
                     <span><TwoTicketsIcon /></span>

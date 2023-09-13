@@ -1,16 +1,19 @@
 import { ReactComponent as IMDBIcon } from "./../assets/icons/imdb.svg";
 import { ReactComponent as RTIcon } from "./../assets/icons/rotten_tomato.svg";
 import { ReactComponent as PlayIcon } from "./../assets/icons/Play.svg";
-import { ReactComponent as HeartIcon } from "./../assets/icons/Heart.svg";
+import { ReactComponent as HeartFIcon } from "./../assets/icons/Heart.svg";
+import { ReactComponent as HeartLIcon } from "./../assets/icons/Heartlined.svg";
 import style from "./Home.module.css";
 import { useEffect, useState } from "react";
 import { DataI } from "../@types/data";
 import { Link } from "react-router-dom";
+import { IPopupContext, usePopup } from "../components/mini/popupContext";
 interface pageDataI {
   movies: DataI | null;
   introMovies: DataI | null;
 }
-function Home() {
+function Home(props: {favorites: [value: number[],setValue : React.Dispatch<React.SetStateAction<number[]>>]}) {
+  const {triggerPopup} = usePopup() as IPopupContext
   const [pageData, setPageData] = useState<pageDataI>({
     movies: null,
     introMovies: null,
@@ -145,8 +148,32 @@ function Home() {
                     </div>
                     <div>
                       <div>
-                        <span>
-                          <HeartIcon />
+                      <span
+                    onClick={(e) => {
+                      e.preventDefault()
+                      if (movie){
+                        let id = movie.id
+                        if (props.favorites[0].includes(id)) {
+                          props.favorites[1](prev => {
+                            return prev.filter(el => el !== id)
+                          })
+                          triggerPopup("Removed from favourites")
+                        }
+                        else {
+                          props.favorites[1](prev => {
+                            return prev.concat([id])
+                          })
+                          triggerPopup("Added to favourites")
+                        }
+                      }
+                    }}
+                    >
+                          {
+                            props.favorites[0].includes(movie.id) ?
+                            <HeartFIcon /> :
+                            <HeartLIcon />
+                            
+                          }
                         </span>
                       </div>
                     </div>
