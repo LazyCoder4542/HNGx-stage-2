@@ -1,0 +1,7 @@
+main {
+  &#movieP {
+    position: relative;
+    display: grid;
+    grid-template-columns: 14.125rem auto;
+  }
+}

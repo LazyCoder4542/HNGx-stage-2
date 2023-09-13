@@ -1,0 +1,115 @@
+#site-header {
+    & .icon {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        font-weight: 500;
+        font-size: 1.5rem;
+        > span:nth-child(1) {
+            width: 2rem;
+            height: 2rem;
+        }
+    }
+    &.mini {    
+        color: white;
+        z-index: 9;
+        position: absolute;
+        top: 0;
+        display: inline-flex;
+        padding-inline: var(--page-padding);
+        padding-block: 1rem;
+        width: 100%;
+        justify-content: space-between;
+        align-items: center;
+        > div {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+    }
+    &.navbar {
+        position: sticky;
+        overflow-y: auto;
+        top: 0;
+        left: 0;
+        padding: 2.125rem 1.25rem;
+        display: flex;
+        flex-direction: column;
+        border-radius: 0rem 2.8125rem 2.8125rem 0rem;
+        height: 100vh;
+        border: 1px solid rgba(0, 0, 0, 0.30);
+        gap: 1rem;
+        align-items: center;
+        > nav {
+            align-self: stretch;
+            margin-inline: -1.25rem;
+            > ul {
+                display: flex;
+                flex-direction: column;
+                list-style: none;
+                > li {
+                    display: flex;
+                    position: relative;
+                    > a {
+                        all: unset;
+                        width: 100%;
+                        display: inline-flex;
+                        align-items: center;
+                        gap: 1rem;
+                        padding: 1.5rem 2rem;
+                        cursor: pointer;
+                        color: #666;
+                        font-size: 1rem;
+                        font-weight: 600;
+                        &.active {
+                            background-color: var(--rose-100);
+                            border-right: 4px solid var(--rose-600);
+                            color: var(--rose-600)
+                        }
+                    }
+                }
+            }
+        }
+        > div:nth-of-type(2) {
+            display: flex;
+            flex-direction: column;
+            border-radius: 1.25rem;
+            padding: 1rem;
+            border: 1px solid var(--rose-600);
+            background: rgba(248, 231, 235, 0.40);
+            gap: .5rem;
+            > p:nth-child(1) {
+                color: rgba(51, 51, 51, 0.80);
+                font-weight: 600;
+            }
+            > p:nth-child(2) {
+                color: #666;
+                font-size: 0.75rem;
+                font-weight: 500;
+                line-height: normal;
+            }
+            > span {
+                align-self: center;
+                border-radius: 1.875rem;
+                background: rgba(190, 18, 60, 0.20);
+                color: #BE123C;
+                font-size: 0.75rem;
+                padding: 0.38rem 1rem;
+            }
+        }
+        > div:nth-of-type(3) {
+            width: 100%;
+            align-self: stretch;
+            margin-top: auto;
+            margin-inline: -1.25rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1.5rem 2rem;
+            cursor: pointer;
+            color: #666;
+            font-size: 1rem;
+            font-weight: 600;
+        }
+    }
+}

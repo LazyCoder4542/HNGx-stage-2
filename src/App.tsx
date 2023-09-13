@@ -1,25 +1,27 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "./App.css";
+import Layout from "./components/Layout";
+import NetworkStatusIndicator from "./components/mini/NetworkStatusIndicator";
 
 function App() {
+  const url = 'https://api.themoviedb.org/3/authentication';
+  const options = {
+    method: 'GET',
+    headers: {
+      accept: 'application/json',
+      Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyMzlmNTVkNzYyYTAyYTEyMzBlNmM0Nzk0YTIxZWNmOCIsInN1YiI6IjYzZjIzOWVkYTY3MjU0MDA4NjVkYThmMiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.iEyFzMdwxT9vZIupxOSfSr8j7w1ow1-H-bBbixyva0U'
+    }
+  };
+  
+  // fetch(url, options)
+  //   .then(res => res.json())
+  //   .then(json => console.log(json))
+  //   .catch(err => console.error('error:' + err));
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+    <NetworkStatusIndicator/>
+    <Layout/>
+    </>
   );
 }
 

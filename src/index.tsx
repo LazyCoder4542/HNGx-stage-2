@@ -1,5 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+
+import { BrowserRouter } from "react-router-dom";
+
+import { PopupProvider } from './components/mini/popupContext';
+import Popup from './components/mini/popup';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
@@ -9,7 +14,12 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <React.StrictMode>
-    <App />
+    <BrowserRouter>
+      <PopupProvider>
+        <Popup />
+        <App />
+      </PopupProvider>
+    </BrowserRouter>
   </React.StrictMode>
 );
 
