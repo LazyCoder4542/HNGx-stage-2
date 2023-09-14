@@ -27,7 +27,7 @@ function Home(props: {
     introMovies: null,
   });
   const swiper = useSwiper();
-
+  console.log(swiper)
   const fetchMovies = async () => {
     const url = process.env.REACT_APP_API_URL + "/movie/top_rated";
     const options = {
@@ -82,6 +82,8 @@ function Home(props: {
       });
   }, []);
   const arry = [4, 5, 1, 2, 3];
+  console.log(arry);
+  
   return (
     <>
       <section id={style.intro}>
