@@ -98,6 +98,9 @@ function Home(props: {
                 }
               }
             }
+            style={{
+              width: "100%"
+            }}
             autoplay={{
               delay: 5000,
             }}

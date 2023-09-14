@@ -6,7 +6,7 @@ span:has(> svg) {
   justify-content: center;
   align-items: center;
 }
-span:has(> svg) > svg {
+:is(span) > svg {
   width: 100%;
   height: 100%
 }
