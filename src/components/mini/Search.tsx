@@ -52,6 +52,41 @@ function Search() {
         </span>
       </div>
       {
+        filter !== ""
+        ?
+        <div>
+          {
+            isLoading ?
+            <div className={style.loading}>
+              <img src={loader} alt="loader" />
+            </div> :
+            (searchData?.results.length !== 0 ? 
+              searchData?.results.map(movie => {
+                return (
+                  <Link to={"movies/" + movie.id} key={movie.id}>
+                    <div className={style.movie}>
+                      <div className={style.image}>
+                        {
+                          movie.poster_path ?
+                          <img src={`https://image.tmdb.org/t/p/w200${movie.poster_path}`} alt={movie.title} /> :
+                          <img src={moviePic} alt={movie.title} />
+                        }
+                      </div>
+                      <div>
+                        <div><h3>{movie.original_title}</h3></div>
+                        <div>Release Date: {movie.release_date}</div>
+                      </div>
+                    </div>
+                  </Link>
+                )
+              }) : 
+            <div className={style.loading}>No Results</div>)
+            
+          }
+        </div>
+        : null
+      }
+      {/* {
         filter !== "" && searchData
         ?
         <div>
@@ -82,7 +117,7 @@ function Search() {
           }
         </div>
         : null
-      }
+      } */}
     </div>
   );
 }
