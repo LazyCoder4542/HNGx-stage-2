@@ -5,7 +5,7 @@ import { ReactComponent as HeartFIcon } from "./../assets/icons/Heart.svg";
 import { ReactComponent as HeartLIcon } from "./../assets/icons/Heartlined.svg";
 import style from "./Home.module.css";
 import { useEffect, useState } from "react";
-import { Swiper, SwiperSlide, useSwiper } from "swiper/react";
+import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, A11y, Autoplay, Parallax } from "swiper/modules";
 import "swiper/css";
 import { DataI } from "../@types/data";
@@ -26,8 +26,6 @@ function Home(props: {
     movies: null,
     introMovies: null,
   });
-  const swiper = useSwiper();
-  console.log(swiper)
   const fetchMovies = async () => {
     const url = process.env.REACT_APP_API_URL + "/movie/top_rated";
     const options = {
@@ -81,8 +79,6 @@ function Home(props: {
           });
       });
   }, []);
-  const arry = [4, 5, 1, 2, 3];
-  console.log(arry);
   
   return (
     <>
@@ -93,6 +89,15 @@ function Home(props: {
             slidesPerView={1}
             pagination={{ clickable: true }}
             draggable={false}
+            allowTouchMove={true}
+            loop={true}
+            breakpoints={
+              {
+                640: {
+                  allowTouchMove: false
+                }
+              }
+            }
             autoplay={{
               delay: 5000,
             }}
@@ -120,7 +125,7 @@ function Home(props: {
                           data-swiper-parallax="-500"
                           data-swiper-parallax-duration="400"
                         >
-                          <a href={"/movie/" + movie.id}>
+                          <a href={"/movies/" + movie.id}>
                             {movie.original_title}
                           </a>
                         </h1>
@@ -165,51 +170,8 @@ function Home(props: {
                   </SwiperSlide>
                 );
               })}
-            {/* {
-            Array.from(
-              (
-                document.querySelector(".swiper-pagination") as HTMLDivElement
-              ).querySelectorAll("span") as NodeListOf<HTMLSpanElement>
-            ).map((element) => {
-              console.log(element);
-              
-              return <></>;
-            })} */}
           </Swiper>
         ) : null}
-        {/* <div className={style.movie_box}>
-          <div className={style.hero}>
-            <img src="./test_hero.jpeg" alt="hero" />
-          </div>
-          <header>
-            <h1>John Wick 3: Parabellum</h1>
-            <div className={style.ratings}>
-              <div>
-                <span>
-                  <IMDBIcon />
-                </span>
-                <span>86.0 / 100</span>
-              </div>
-              <div>
-                <span>
-                  <RTIcon />
-                </span>
-                <span>97%</span>
-              </div>
-            </div>
-            <p>
-              John Wick is on the run after killing a member of the international
-              assassins' guild, and with a $14 million price tag on his head, he
-              is the target of hit men and women everywhere.
-            </p>
-            <div className={"button " + style.button}>
-              <span>
-                <PlayIcon />
-              </span>
-              <span>WATCH TRAILER</span>
-            </div>
-          </header>
-        </div> */}
       </section>
       <section id={style.featured}>
         <header>
@@ -219,7 +181,7 @@ function Home(props: {
           <div className={style.movies}>
             {pageData.movies.results.map((movie) => {
               return (
-                <Link to={"movie/" + movie.id} key={movie.id}>
+                <Link to={"movies/" + movie.id} key={movie.id}>
                   <div data-testid="movie-card">
                     <div className={style.image}>
                       <img

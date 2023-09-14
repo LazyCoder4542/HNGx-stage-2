@@ -93,6 +93,12 @@ section#featured {
             color: var(--gray-900);
             font: 700 var(--text-lg) var(--ff-main);
           }
+          > div:nth-child(5) {
+            color: var(--gray-400);
+            font-size: 0.75rem;
+            font-weight: 700;
+            line-height: normal;
+          }
           > div:nth-child(6) {
             position: absolute;
             display: flex;

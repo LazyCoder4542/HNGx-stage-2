@@ -122,21 +122,38 @@ function Movie(props: {favorites: [value: number[],setValue : React.Dispatch<Rea
         <>
           <div className={style.image}>
           <img src={`https://image.tmdb.org/t/p/original${pageData.movie.backdrop_path}`} alt={pageData.movie.title} />
-          <div>
+          {
+            pageData.movie.videos.results.length !== 0  ?
             <div>
-              <span>
-                <PlayIcon />
-              </span>
-            </div>
-            <div>Watch Trailer</div>
-          </div>
+              <a href={"https://www.youtube.com/watch?v=" + pageData.movie.videos.results[0].key}>
+                <div>
+                  <span>
+                    <PlayIcon />
+                  </span>
+                </div>
+              </a>
+              <div>Watch Trailer</div>
+            </div> :
+            null
+          }
           </div>
           <div className={style.container}>
             <aside>
               <div>
                 <div className={style.heading}>
                   <h3>
-                    {[pageData.movie.original_title, pageData.movie.release_date.split("-")[0], "PG-13", `${Math.floor(pageData.movie.runtime / 60)}h ${Math.floor(pageData.movie.runtime % 60)}m` ].join(" • ")}
+                    <span data-testid="movie-title">{pageData.movie.original_title}</span>
+                    <span>•</span>
+                    <span data-testid="movie-release-date">{new Date(pageData.movie.release_date).getTime()}</span>
+                    <span>•</span>
+                    <span>PG-13</span>
+                    <span>•</span>
+                    <span>
+                      <span data-testid="movie-runtime">{pageData.movie.runtime}</span>
+                      <span>m</span>
+                    </span>
+                    
+                    {/* {[pageData.movie.original_title, pageData.movie.release_date.split("-")[0], "PG-13", `${Math.floor(pageData.movie.runtime / 60)}h ${Math.floor(pageData.movie.runtime % 60)}m` ].join(" • ")} */}
                   </h3>
                   <div>
                     {
@@ -149,7 +166,7 @@ function Movie(props: {favorites: [value: number[],setValue : React.Dispatch<Rea
                   </div>
                 </div>
                 <div className={style.description}>
-                  <p>{pageData.movie.overview}</p>
+                  <p data-tesid="movie-overview">{pageData.movie.overview}</p>
                 </div>
               </div>
               <div>

@@ -62,7 +62,7 @@ function Search() {
             </div> :
             searchData.results.map(movie => {
               return (
-                <Link to={"movie/" + movie.id} key={movie.id}>
+                <Link to={"movies/" + movie.id} key={movie.id}>
                   <div className={style.movie}>
                     <div className={style.image}>
                       {

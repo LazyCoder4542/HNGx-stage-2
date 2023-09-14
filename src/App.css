@@ -36,13 +36,11 @@ a {
       font-weight: 700;
       transition-property: color, font-size, order;
       transition-duration: 500ms;
-      order: 1;
       cursor: pointer;
       &:hover {
         color: white;
       }
       &.swiper-pagination-bullet-active {
-        order: 0;
         font-size: 1.25rem;
         color: white;
         &::before {

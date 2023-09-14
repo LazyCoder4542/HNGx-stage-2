@@ -1,0 +1,33 @@
+footer#site-footer {
+  width: 100%;
+  padding-inline: var(--page-padding);
+  padding-block: 4.6rem;
+  > div:nth-child(1) {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 2.25rem;
+    > div:nth-child(1) {
+      display: inline-flex;
+      gap: 3rem;
+      align-items: center;
+      > span {
+        width: 1.5rem;
+        height: 1.5rem;
+      }
+    }
+    > div:nth-child(2) > ul {
+      list-style: none;
+      display: inline-flex;
+      gap: 3rem;
+      color: var(--gray-900);
+      font-size: 1.125rem;
+      font-weight: 700;
+    }
+    > div:nth-child(3) {
+      color: var(--gray-500);
+      font-size: 1.125rem;
+      font-weight: 700;
+    }
+  }
+}
